@@ -24,8 +24,8 @@ const ChatContext = createContext({} as IChat);
 
 export const ChatProvider = (props:any) => { 
     const [messages, setMessages] = useState<IMessage[]>([])
-    const [users, setUsers] = useState([])
-    const [currentUser, setCurrentUser] = useState('')
+    const [users, setUsers] = useState<string[]>([])
+    const [currentUser, setCurrentUser] = useState<string>('')
 
     useEffect( ()=> {
         socket.on('receiveMessage', (newMsgObj:IMessage) => { 
