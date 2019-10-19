@@ -55,22 +55,21 @@ const LoginForm = styled.form`
 
 const UserLogin:React.FC = () => {
     const [userName, setUserName] = useState('');
+    const [isOpen, setIsOpen] = useState(true);
     const chat = useContext(ChatContext)
 
     function handleSubmit(e:FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
-        let dialog = document.querySelector('dialog')
-
         if ( userName ) {
             chat.setUsers( (prevUsers: string[]) => [...prevUsers, userName])
             chat.setCurrentUser(userName)
-            if (dialog) { dialog.close() }
+            setIsOpen(false)
         }
     }
 
     return (
-        <LoginScreen id="login-screen"open>
+        <LoginScreen id="login-screen" open={ isOpen }>
             <AppName>CHATERINE</AppName>
             <LoginForm onSubmit={ handleSubmit }>
                 <h2>LOGIN</h2>
